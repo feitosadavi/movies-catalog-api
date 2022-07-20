@@ -1,0 +1,29 @@
+version: "3"
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:14
+    restart: always
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_HOST=postgres
+      # - POSTGRES_PORT=5432
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "5432:5432"
+  api:
+    container_name: sales-api-dev
+    image: node:16
+    working_dir: /usr/src/sales-api-dev
+    restart: always
+    command: bash -c "npm install && npm run dev"
+    volumes:
+      - ./src/:/usr/src/sales-api-dev/src/
+      - ./package.json:/usr/src/sales-api-dev/package.json
+      - ./tsconfig.json:/usr/src/sales-api-dev/tsconfig.json
+    ports:
+      - "3000:3000"
+    links:
+      - postgres
