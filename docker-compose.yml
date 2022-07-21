@@ -1,26 +1,19 @@
 version: "3"
+
+
 services:
-  postgres:
-    container_name: postgres_container
+  database:
     image: postgres:14
-    restart: always
-    environment:
-      - PG_USER=postgres
-      - PG_PASSWORD=docker
-      - PG_DB=movies_catalog-db
-    volumes:
-      - ./data:/data/db
     ports:
-      - 5432
-  api:
-    container_name: movies-catalog-api
-    build:
-      context: .
-    depends_on:
-      - postgres
-    restart: always
+      - 5432:5432
     volumes:
-      - ./:/home/node/app
-    env_file:
-      - .env
-    command: npm run start
+      - database-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST=127.0.0.1
+      - POSTGRES_PORT=6500
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=movies
+      - POSTGRES_DB=movies-catalog_db
+
+volumes:
+  database-data: {}

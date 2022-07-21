@@ -1,14 +1,25 @@
 import { DataSource } from 'typeorm';
 
+const {
+  TYPEORM_CONNECTION,
+  TYPEORM_HOST,
+  TYPEORM_USERNAME,
+  TYPEORM_PASSWORD,
+  TYPEORM_DATABASE,
+  TYPEORM_PORT,
+  TYPEORM_SYNCHRONIZE,
+  TYPEORM_LOGGING,
+} = process.env
+
 const AppDataSource = new DataSource({
-  type: 'postgres', // bolar uma estrategia para rodar as migrations sem precisar modificar isto!!!
-  host: 'postgres_container', // if using docker, needs to be the container name
-  port: 5432,
-  username: 'postgres',
-  password: 'docker',
-  database: 'movies_catalog-db',
-  synchronize: true,
-  logging: true,
+  type: TYPEORM_CONNECTION as 'postgres', // bolar uma estrategia para rodar as migrations sem precisar modificar isto!!!
+  host: TYPEORM_HOST, // if using docker, needs to be the container name
+  port: Number(TYPEORM_PORT),
+  username: TYPEORM_USERNAME,
+  password: TYPEORM_PASSWORD,
+  database: TYPEORM_DATABASE,
+  synchronize: Boolean(TYPEORM_SYNCHRONIZE),
+  logging: Boolean(TYPEORM_LOGGING),
   entities: ['./src/infra/repos/postgres/entities/*.entity.ts'],
   subscribers: [],
   migrations: [
