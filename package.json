@@ -8,6 +8,7 @@
     "build": "tsc -p tsconfig.build.json",
     "start": "NODE_ENV=production node dist/main/server.js",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:coverage": "npm test -- --coverage",
     "test:unit": "npm test -- --watchAll -c jest.unit.config.js"
   },
   "author": "",
