@@ -1,0 +1,1 @@
+export { default as MovieEntity } from './movie.entity'

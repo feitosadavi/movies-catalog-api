@@ -10,7 +10,7 @@ export const setupApp = (): Express => {
   const app = express();
 
   setupMiddlewares(app);
-  // setupRoutes(app);
+  setupRoutes(app);
 
   return app;
 };
