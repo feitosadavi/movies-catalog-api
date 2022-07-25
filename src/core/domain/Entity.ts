@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 
 export abstract class Entity<T> {
-  protected _id: string
+  public _id: string
   public props: T
 
   constructor(props: T, id?: string) {
