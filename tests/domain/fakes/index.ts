@@ -1,1 +1,1 @@
-export * from './fake-products';
+export * from './movies.fakes'

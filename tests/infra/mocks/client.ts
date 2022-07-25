@@ -1,9 +1,9 @@
 import { HttpGetClient } from '../gateways';
 
-export const mockHttpGetClient = () => {
+export const mockHttpGetClient = (output: unknown) => {
   class HttpGetClientStub implements HttpGetClient {
     async get<T = any> (input: HttpGetClient.Input): Promise<T> {
-      return await 'any_value' as unknown as T
+      return await output as T
     }
   }
   return new HttpGetClientStub

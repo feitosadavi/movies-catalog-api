@@ -1,5 +1,5 @@
 import { mockHttpGetClient } from '../mocks/client'
-import { HttpGetClient, Ghibliapi } from '@/infra/gateways'
+import { HttpGetClient, Ghibliapi, GhibliapiMovie } from '@/infra/gateways'
 
 type SutType = {
   httpGetClientStub: HttpGetClient
@@ -7,8 +7,16 @@ type SutType = {
 }
 
 describe('Ghibliapi', () => {
+  const makeFakeGhibliapiMovie = (): GhibliapiMovie => ({
+    title: 'any_title',
+    description: 'any_description',
+    movie_banner: 'any_banner',
+    producer: 'any_producer',
+    director: 'any_director'
+  })
+
   const makeSut = (): SutType => {
-    const httpGetClientStub = mockHttpGetClient()
+    const httpGetClientStub = mockHttpGetClient(makeFakeGhibliapiMovie())
     const sut = new Ghibliapi(httpGetClientStub)
     return {
       httpGetClientStub,
@@ -23,6 +31,12 @@ describe('Ghibliapi', () => {
       await sut.loadMovies()
 
       expect(getSpy).toHaveBeenCalledWith({ url: 'https://ghibliapi.herokuapp.com/films' })
+    })
+    it('should return correct data', async () => {
+      const { sut } = makeSut()
+      const movies = await sut.loadMovies()
+      const { movie_banner, ...fakeGhibliapiMovie } = makeFakeGhibliapiMovie()
+      expect(movies).toEqual({ ...fakeGhibliapiMovie, banner: makeFakeGhibliapiMovie().movie_banner })
     })
   })
 })
