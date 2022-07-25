@@ -8,6 +8,10 @@ export class MovieController implements Controller {
     try {
       console.log('bora salvar')
       await this.saveMovies.execute()
+      return {
+        statusCode: 204,
+        body: {}
+      }
     } catch (error) {
       console.error(error)
       return {
