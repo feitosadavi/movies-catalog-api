@@ -1,14 +1,14 @@
-import { Product, ProductWithoutId } from '../entities';
+import { Movie, MovieProps } from '../entities';
 
-export const makeFakeMovies = (): Product[] => ([{
-  id: 'any_id',
+export const makeFakeMovies = (): Movie["props"][] => ([{
+  // _id: 'any_id',
   title: 'any_title',
   description: 'any_description',
   banner: 'any_banner',
   producer: 'any_producer',
   director: 'any_director',
 }, {
-  id: 'other_id',
+  // _id: 'other_id',
   title: 'other_title',
   description: 'other_description',
   banner: 'other_banner',
@@ -16,7 +16,7 @@ export const makeFakeMovies = (): Product[] => ([{
   director: 'other_director',
   }])
 
-export const makeFakeMoviesWithOutId = (): ProductWithoutId[] => ([{
+export const makeFakeMoviesWithOutId = (): MovieProps[] => ([{
   title: 'any_title',
   description: 'any_description',
   banner: 'any_banner',
