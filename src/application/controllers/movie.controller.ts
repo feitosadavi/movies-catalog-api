@@ -6,7 +6,6 @@ export class MovieController implements Controller {
 
   async handle (req): Promise<{ statusCode: number; body: any }> {
     try {
-      console.log('bora salvar')
       await this.saveMovies.execute()
       return {
         statusCode: 204,

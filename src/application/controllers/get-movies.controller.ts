@@ -6,7 +6,6 @@ export class GetMoviesController implements Controller {
 
   async handle ({ skip, limit }: Request): Promise<{ statusCode: number; body: any }> {
     try {
-      console.log({ skip, limit })
       const movies = await this.getMovies.execute({ skip, limit })
       return {
         statusCode: 200,
