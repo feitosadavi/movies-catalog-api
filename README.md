@@ -47,10 +47,18 @@ Install Corelab API Challenge with npm
 
 To run the project with Docker you need to follow the steps above:
 
+    - Create a .env file on the base directory of the project with these variables:
+
+        NODE_ENV=development
+        PORT=3333
+        DB_URL=mongodb://waproject:challenge@mongo:27017
+
+Then, follow these steps bellow:
+
 ```bash
   docker-compose up
   or
-  npm run build & npm start (you should have a MongoDB instance running)
+  npm run build & npm start (you should have a MongoDB instance running on 27017 port)
 ```
     
 ## Running Tests
