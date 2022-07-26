@@ -81,7 +81,7 @@ to watch code changes:
 ### Get all movies (GET /movies)
 
 ```http
-  curl -i -H 'Accept: application/json' http://localhost:3333/api/movies/:skip?/:limit?
+  curl -i -H 'Accept: application/json' https://moviescatalogapi.herokuapp.com/api/movies/:skip?/:limit?
 ```
 
 | URL Parameters | Type     | Description                |
@@ -117,7 +117,7 @@ to watch code changes:
 ### Add 50 new movies if database is empty (POST /movies)
 
 ```http
-  curl -i -H 'Accept: application/json' -d ${data} http://localhost:3333/api/movies'
+  curl -i -H 'Accept: application/json' -d ${data} https://moviescatalogapi.herokuapp.com/api/movies'
 ```
 
 | Parameter | Type     | Description                |
