@@ -23,10 +23,7 @@ const makeGetMoviesController = () => {
 }
 
 export default (router: Router): void => {
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  router.get('/save-movies', (req, res) => {
-    makeMovieController().handle(req)
-  })
+  router.get('/save-movies', adaptRoute(makeMovieController()))
 
   router.get('/get-movies/:skip?/:limit?', adaptRoute(makeGetMoviesController()))
 }
