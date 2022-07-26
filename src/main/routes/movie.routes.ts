@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Router } from 'express'
 import { MovieController } from '@/application/controllers/movie.controller'
-import { GetMovies, SaveMovies } from '@/application/usecases'
+import { DeleteMovies, GetMovies, SaveMovies } from '@/application/usecases'
 import { AxiosHttpClient, Ghibliapi } from '@/infra/gateways'
 import { MoviesMongoRepository } from '@/infra/repos/mongo'
 import { GetMoviesController } from '@/application/controllers/get-movies.controller'
 import { adaptRoute } from '../adapters'
+import { DeleteMoviesController } from '@/application/controllers/delete-movies.controller'
 
 const makeMovieController = () => {
   const axiosHttpClient = new AxiosHttpClient()
@@ -22,8 +23,14 @@ const makeGetMoviesController = () => {
   return new GetMoviesController(getMovies)
 }
 
+const makeDeleteMoviesController = () => {
+  const moviesRepository = new MoviesMongoRepository()
+  const deleteMovies = new DeleteMovies(moviesRepository)
+  return new DeleteMoviesController(deleteMovies)
+}
+
 export default (router: Router): void => {
   router.get('/save-movies', adaptRoute(makeMovieController()))
-
   router.get('/get-movies/:skip?/:limit?', adaptRoute(makeGetMoviesController()))
+  router.delete('/movies/delete', adaptRoute(makeDeleteMoviesController()))
 }
