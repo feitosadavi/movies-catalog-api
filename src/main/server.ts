@@ -1,5 +1,15 @@
+/* eslint-disable import/first */
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+import moduleAlias from 'module-alias'
+import 'module-alias/register'
+import { resolve } from 'path'
+
+// SETUP ALIASES FOR DEV AND PROD ENVIRONMENTS
+const absolutePath = resolve('.')
+const alias = process.env.NODE_ENV === 'production' ? { '@': `${absolutePath}/dist` } : { '@': '/' }
+moduleAlias.addAliases(alias)
+
 import { setupApp } from './config';
-import 'reflect-metadata';
 import mongoose from 'mongoose'
 
 const app = setupApp();
