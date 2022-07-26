@@ -7,8 +7,10 @@ export class MoviesMongoRepository implements IMoviesRepository {
     await MovieModel.insertMany(movies)
   }
 
-  async getMovies ({ skip, limit }: IMoviesRepository.GetMoviesInput): Promise<IMoviesRepository.GetMoviesOutput[]> {
+  async getMovies ({ skip, limit }: IMoviesRepository.GetMoviesInput): Promise<IMoviesRepository.GetMoviesOutput> {
     const movies = await MovieModel.find().skip(skip).limit(limit).lean()
-    return movies.map(movie => ({ ...movie, _id: String(movie._id) })) // convert ObjectId (_id) to string
+    const totalCount = await MovieModel.count();
+    const moviesWithStringId = movies.map(movie => ({ ...movie, _id: String(movie._id) }))
+    return { movies: moviesWithStringId, totalCount } // convert ObjectId (_id) to string
   }
 }

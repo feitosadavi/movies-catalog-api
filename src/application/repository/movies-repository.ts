@@ -3,7 +3,7 @@ import { MovieProps } from '@/domain/entities';
 
 export interface IMoviesRepository {
   saveMany (input: MovieProps[]): Promise<void>
-  getMovies (input: IMoviesRepository.GetMoviesInput): Promise<IMoviesRepository.GetMoviesOutput[]>
+  getMovies (input: IMoviesRepository.GetMoviesInput): Promise<IMoviesRepository.GetMoviesOutput>
 }
 
 export namespace IMoviesRepository {
@@ -11,5 +11,8 @@ export namespace IMoviesRepository {
     skip: number
     limit: number
   }
-  export type GetMoviesOutput = MovieProps & { _id: string }
+  export type GetMoviesOutput = {
+    movies: Array<MovieProps & { _id: string }>
+    totalCount: number
+  }
 }
