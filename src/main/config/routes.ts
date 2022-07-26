@@ -6,7 +6,6 @@ export default (app: Express): void => {
   app.use('/api', router);
   readdirSync(`${__dirname}/../routes/`).map(async (file) => {
     if (!file.endsWith('.map')) { // avoid problemas with ts source map when app its compiled
-      console.log({ file })
       const route = (await import(`../routes/${file}`))
       route.default(router); // pego o arquivo e depois o seu default
     }
