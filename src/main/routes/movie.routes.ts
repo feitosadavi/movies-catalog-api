@@ -30,7 +30,7 @@ const makeDeleteMoviesController = () => {
 }
 
 export default (router: Router): void => {
-  router.get('/save-movies', adaptRoute(makeMovieController()))
-  router.get('/get-movies/:skip?/:limit?', adaptRoute(makeGetMoviesController()))
+  router.post('/movies', adaptRoute(makeMovieController()))
+  router.get('/movies/:skip?/:limit?', adaptRoute(makeGetMoviesController()))
   router.delete('/movies/delete', adaptRoute(makeDeleteMoviesController()))
 }
