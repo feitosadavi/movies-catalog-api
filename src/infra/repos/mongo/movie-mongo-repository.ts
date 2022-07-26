@@ -13,4 +13,8 @@ export class MoviesMongoRepository implements IMoviesRepository {
     const moviesWithStringId = movies.map(movie => ({ ...movie, _id: String(movie._id) }))
     return { movies: moviesWithStringId, totalCount } // convert ObjectId (_id) to string
   }
+
+  async deleteMovies (): Promise<void> {
+    await MovieModel.deleteMany({})
+  }
 }
