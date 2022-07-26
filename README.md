@@ -31,7 +31,7 @@ A REST API for Wa Project's Challenge
 
 ## Installation
 
-Install Corelab API Challenge with npm
+Install Movies Catalog API with npm
 
  - Install docker
  - Install docker-compose
