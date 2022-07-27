@@ -14,7 +14,7 @@ export class Ghibliapi implements GhibliapiGateway {
   async loadMovies (): Promise<MovieProps[]> {
     const movies = []
     while (movies.length < 50) {
-      const ghibliapiMovies = (await this.httpClient.get<GhibliapiMovie[]>({ url: 'https://ghibliapi.herokuapp.com/films' }))
+      const ghibliapiMovies = await this.httpClient.get<GhibliapiMovie[]>({ url: 'https://ghibliapi.herokuapp.com/films' })
       const mappedGhibliapiMovies = this.mapMovie(ghibliapiMovies)
       if (mappedGhibliapiMovies.length + movies.length > 50) {
         const firstSixMovies = mappedGhibliapiMovies.slice(0, 6)
