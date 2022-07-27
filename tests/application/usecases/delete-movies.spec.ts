@@ -1,9 +1,7 @@
 import { MockProxy, mock } from 'jest-mock-extended'
 
 import { DeleteMovies } from '@/application/usecases'
-import { IMoviesRepository } from '@/application/repository'
-
-jest.mock('@/application/gateways/ghibliapi.ts')
+import { IMoviesRepository } from '@/application/protocols'
 
 type SutType = {
   sut: DeleteMovies

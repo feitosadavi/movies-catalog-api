@@ -1,5 +1,4 @@
-import { GhibliapiGateway } from '@/application/gateways';
-import { IMoviesRepository } from '@/application/repository';
+import { GhibliapiGateway, IMoviesRepository } from '@/application/protocols';
 import { Movie, MovieProps } from '@/domain/entities';
 
 export class SaveMovies {

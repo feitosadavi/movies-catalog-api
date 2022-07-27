@@ -1,11 +1,8 @@
 import { MockProxy, mock } from 'jest-mock-extended'
 
-import { makeFakeMovies } from '@tests/domain/fakes/movies.fakes'
-import { GhibliapiGateway } from '@/application/gateways'
+import { GhibliapiGateway, IMoviesRepository } from '@/application/protocols'
 import { SaveMovies } from '@/application/usecases'
-import { IMoviesRepository } from '@/application/repository'
-
-jest.mock('@/application/gateways/ghibliapi.ts')
+import { makeFakeMovies } from '@tests/domain/fakes/movies.fakes'
 
 type SutType = {
   sut: SaveMovies

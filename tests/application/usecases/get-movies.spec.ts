@@ -1,10 +1,8 @@
 import { MockProxy, mock } from 'jest-mock-extended'
 
 import { GetMovies } from '@/application/usecases'
-import { IMoviesRepository } from '@/application/repository'
+import { IMoviesRepository } from '@/application/protocols'
 import { makeFakeMovies } from '@tests/domain/fakes'
-
-jest.mock('@/application/gateways/ghibliapi.ts')
 
 describe('GetMovies', () => {
   let fakeMoviesRepository: MockProxy<IMoviesRepository>

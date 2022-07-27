@@ -1,4 +1,4 @@
-import { IMoviesRepository } from '@/application/repository';
+import { IMoviesRepository } from '@/application/protocols';
 
 export class GetMovies {
   constructor(

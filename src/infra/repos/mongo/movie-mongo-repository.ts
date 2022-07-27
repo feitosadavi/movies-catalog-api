@@ -1,4 +1,4 @@
-import { IMoviesRepository } from '@/application/repository';
+import { IMoviesRepository } from '@/application/protocols';
 import { MovieProps } from '@/domain/entities';
 import MovieModel from './movie.model';
 

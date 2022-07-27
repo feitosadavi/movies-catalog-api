@@ -1,4 +1,4 @@
-import { GhibliapiGateway } from '@/application/gateways';
+import { GhibliapiGateway } from '@/application/protocols';
 import { MovieProps } from '@/domain/entities';
 import { HttpGetClient } from './protocols';
 
