@@ -22,6 +22,6 @@ export class GetMoviesController implements Controller {
 }
 
 type Request = {
-  skip: number
-  limit: number
+  skip?: number
+  limit?: number
 }
