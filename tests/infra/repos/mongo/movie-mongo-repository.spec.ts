@@ -28,4 +28,27 @@ describe('MovieMongoRepository', () => {
       expect(dbMovies[0].title).toBe('any_title')
     })
   })
+
+  describe('GetMovies', () => {
+    it('should get all movies from db', async () => {
+      await MovieModel.insertMany(makeFakeMoviesWithOutId())
+      const movies = await sut.getMovies({})
+
+      expect(movies.totalCount).toBe(2)
+      expect(movies.movies.length).toBe(2)
+      expect(movies.movies[0].title).toBe('any_title')
+    })
+
+    it('should get all movies with skip and limit options', async () => {
+      await MovieModel.insertMany([
+        ...makeFakeMoviesWithOutId(),
+        ...makeFakeMoviesWithOutId()
+      ])
+      const movies = await sut.getMovies({ skip: 3, limit: 1 })
+
+      expect(movies.totalCount).toBe(4)
+      expect(movies.movies.length).toBe(1)
+      expect(movies.movies[0].title).toBe('other_title')
+    })
+  })
 })
