@@ -8,8 +8,18 @@ export class Ghibliapi implements GhibliapiGateway {
   constructor(private readonly httpClient: HttpGetClient) { }
 
   async loadMovies (): Promise<MovieProps[]> {
-    const ghibliapiMovies = await this.httpClient.get<GhibliapiMovie[]>({ url: 'https://ghibliapi.herokuapp.com/films' })
-    const movies = ghibliapiMovies.map(({ movie_banner, ...apiMovie }) => ({ ...apiMovie, banner: movie_banner }))
+    const movies = []
+    while (movies.length < 50) {
+      const ghibliapiMovies = (await this.httpClient.get<GhibliapiMovie[]>({ url: 'https://ghibliapi.herokuapp.com/films' }))
+        .map(({ movie_banner, ...apiMovie }) => ({ ...apiMovie, banner: movie_banner }))
+
+      if (ghibliapiMovies.length + movies.length > 50) {
+        const firstSixMovies = ghibliapiMovies.slice(0, 6)
+        movies.push(...firstSixMovies)
+      } else {
+        movies.push(...ghibliapiMovies)
+      }
+    }
     return movies
   }
 }
