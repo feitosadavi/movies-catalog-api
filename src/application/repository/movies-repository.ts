@@ -9,8 +9,8 @@ export interface IMoviesRepository {
 
 export namespace IMoviesRepository {
   export type GetMoviesInput = {
-    skip: number
-    limit: number
+    skip?: number
+    limit?: number
   }
   export type GetMoviesOutput = {
     movies: Array<MovieProps & { _id: string }>
