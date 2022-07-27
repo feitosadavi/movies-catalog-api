@@ -1,7 +1,7 @@
 import { MockProxy, mock } from 'jest-mock-extended'
 
 import { HttpGetClient, Ghibliapi, GhibliapiMovie } from '@/infra/gateways'
-import { makeFakeMovies } from '@tests/domain/fakes'
+import { makeFakeMoviesWithOutId } from '@tests/domain/fakes'
 
 const makeFakeGhibliapiMovie = (): GhibliapiMovie[] => ([{
   title: 'any_title',
@@ -32,7 +32,7 @@ describe('Ghibliapi', () => {
     })
     it('should return correct data, not mattering how much data came remotely', async () => {
       const movies = await sut.loadMovies()
-      const resultTimesFifthy = Array(50).fill(makeFakeMovies()[0])
+      const resultTimesFifthy = Array(50).fill(makeFakeMoviesWithOutId()[0])
       expect(movies).toEqual(resultTimesFifthy)
     })
   })
