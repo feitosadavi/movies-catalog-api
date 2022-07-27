@@ -51,4 +51,14 @@ describe('MovieMongoRepository', () => {
       expect(movies.movies[0].title).toBe('other_title')
     })
   })
+
+  describe('DeleteMovies', () => {
+    it('should delete all movies', async () => {
+      await MovieModel.insertMany(makeFakeMoviesWithOutId())
+      await sut.deleteMovies()
+      const movies = await MovieModel.find().lean()
+
+      expect(movies.length).toBe(0)
+    })
+  })
 })
